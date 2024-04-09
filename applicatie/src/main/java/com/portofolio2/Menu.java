@@ -7,6 +7,19 @@ public class Menu {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+    
+    public static void printMenu () {
+        System.out.println("InvestPro");
+        System.out.println();
+        System.out.println("1. Bekijk portofolio");
+        System.out.println("2. Voeg aandeel toe");
+        System.out.println("3. Verwijder aandeel");
+        System.out.println("4. Voeg spaargeld toe");
+        System.out.println("5. Bereken belasting");
+        System.out.println();
+
+    }
+
 
 
     public void menuStart() {
@@ -23,16 +36,16 @@ public class Menu {
 
             switch (choice) {
                 case 1:
-                    optie1();
+                    
                     break;
                 case 2:
-                    optie2();
+                    
                     break;
                 case 3:
-                    optie3();
+                    
                     break;
                 case 4:
-                    optie4();
+                    
                     break;
 
                 case 5:
@@ -40,7 +53,7 @@ public class Menu {
                     System.out.println("Programma wordt afgesloten.");
                     break;
                 case 9:
-                    optie9();
+                    
                     break;
                 default:
                     System.out.println("Ongeldige keuze. Probeer opnieuw.");
@@ -54,6 +67,27 @@ public class Menu {
         System.out.println("Druk op Enter om terug te gaan naar het hoofdmenu.");
         scanner.nextLine();
     }
+
+    private static void viewPortfolio() {
+    
+    
+}
+
+    private static void addStock() {
+    
+    
+}
+
+    private static void removeStock() {
+    
+    
+}
+    private static void calcBelasting() {
+    
+    
+}
+
+
 
     
 }

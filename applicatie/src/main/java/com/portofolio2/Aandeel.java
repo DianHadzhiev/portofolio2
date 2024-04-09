@@ -12,7 +12,6 @@ public class Aandeel {
         this.naam = naam;
     }
 
-
     public double getPrijs() {
         return prijs;
     }
@@ -22,3 +21,5 @@ public class Aandeel {
 
     
 }
+
+
