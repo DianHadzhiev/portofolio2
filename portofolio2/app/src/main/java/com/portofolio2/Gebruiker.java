@@ -45,12 +45,16 @@ public class Gebruiker {
         return aandelen;
     }
 
-    //public double getTotalewaarde() {
-        //hier wordt portofolio waarde berekent
-      //  return
-   // }
-
+    public double getTotaleWaarde() {
+        double totalValue = 0;
+        for (Aandeel aandeel : aandelen) {
+            totalValue += aandeel.getPrijs();
+        }
+        return totalValue;
+    }
 }
+
+
 
 
 
