@@ -6,9 +6,10 @@ import java.util.ArrayList;
 public class Gebruiker {
     private String naam;
     private double spaargeld;
-    private ArrayList<Aandeel> aandelen ;
+    private ArrayList<Aandeel> aandelen = new ArrayList<>();
 
     public Gebruiker () {
+        
 
     }
     public Gebruiker (String naam) {
@@ -39,6 +40,9 @@ public class Gebruiker {
     }
     public void verwijderAandeel(Aandeel aandeel) {
         aandelen.remove(aandeel);
+    }
+    public ArrayList<Aandeel> getAandelen() {
+        return aandelen;
     }
 
     //public double getTotalewaarde() {

@@ -4,7 +4,7 @@ public class Aandeel {
     private String naam;
     private double prijs;
     
-    
+   
     public String getNaam() {
         return naam;
     }
