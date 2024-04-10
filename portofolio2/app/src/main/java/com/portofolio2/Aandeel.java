@@ -1,5 +1,5 @@
 package com.portofolio2;
 
-public class Aandeel {
+public class Aandeel extends Kapitaalvorm{
     
 }

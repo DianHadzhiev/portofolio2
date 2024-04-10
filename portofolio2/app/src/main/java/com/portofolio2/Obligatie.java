@@ -1,5 +1,5 @@
 package com.portofolio2;
 
-public class Obligatie {
+public class Obligatie extends Kapitaalvorm{
     
 }
