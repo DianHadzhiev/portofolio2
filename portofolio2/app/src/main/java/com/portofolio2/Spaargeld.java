@@ -4,9 +4,13 @@ package com.portofolio2;
 public class Spaargeld {
     
     private double rentePerc =1.017;
-    private double aantal;
-    private String naam;
+    protected double aantal;
+    protected String naam;
 
+    public Spaargeld (double aantal, String naam) {
+        this.aantal = aantal;
+        this.naam = naam;
+    }
     
     public double getRente() { return rentePerc; }
 

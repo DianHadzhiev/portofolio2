@@ -1,34 +1,37 @@
+package com.portofolio2;
 import java.util.ArrayList;
 
 class Gebruiker {
     private ArrayList<Aandeel> aandelen;
     private ArrayList<Crypto> crypto;
     private ArrayList<Obligatie> obligaties;
-    private ArrayList<Spaargeld> spaargeld;
+    private Spaargeld spaargeld;
     private String naam;
 
-    // Constructor
+    
     public Gebruiker(String naam) {
         this.naam = naam;
         this.aandelen = new ArrayList<>();
         this.crypto = new ArrayList<>();
         this.obligaties = new ArrayList<>();
-        this.spaargeld = new ArrayList<>();
+    }
+    public Gebruiker() {
+        this.aandelen = new ArrayList<>();
+        this.crypto = new ArrayList<>();
+        this.obligaties = new ArrayList<>();
+
     }
 
-    // Methods
-    public void AddAandeel(Aandeel aandeel) {
-        aandelen.add(aandeel);
-    }
+    
+    
 
-    public void DelAandeel() {
-        // Implement deletion logic here if needed
+    public void DelAandeel(int index) {
+    aandelen.remove(index-1);
     }
 
     public double getTotaleWaarde() {
         double totaleWaarde = 0.0;
-        // Calculate total value including aandelen, crypto, obligaties, spaargeld
-        // Implement calculation logic here
+      
         return totaleWaarde;
     }
 
@@ -40,13 +43,14 @@ class Gebruiker {
         this.naam = naam;
     }
 
-    public double getSpaarGeld() {
-        // Implement logic to calculate total spaargeld
-        return 0.0; // placeholder value
+    public Spaargeld getSpaarGeld() {
+        
+        return spaargeld;
     }
 
-    public void setSpaarGeld(double spaargeld) {
-        // Implement logic to set spaargeld
+    public void setSpaarGeld(Spaargeld spaargeld) {
+        this.spaargeld = spaargeld;
+       
     }
 
     public ArrayList<Aandeel> getAandelen() {
@@ -67,5 +71,10 @@ class Gebruiker {
 
     public void addCrypto(Crypto crypto) {
         this.crypto.add(crypto);
+    }
+
+    public void addAandeel(Aandeel aandeel) {
+        aandelen.add(aandeel);
+        
     }
 }
