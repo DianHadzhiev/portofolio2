@@ -212,7 +212,7 @@ public class DataSeeder {
         } 
 
         for (String overigelijnen : lines) {
-            wr
+            
 
         
 

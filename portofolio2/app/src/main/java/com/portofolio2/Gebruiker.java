@@ -5,6 +5,7 @@ class Gebruiker {
     private ArrayList<Aandeel> aandelen;
     private ArrayList<Crypto> crypto;
     private ArrayList<Obligatie> obligaties;
+    private ArrayList<Kapitaalvorm> kapitaal;
     private Spaargeld spaargeld;
     private String naam;
 
