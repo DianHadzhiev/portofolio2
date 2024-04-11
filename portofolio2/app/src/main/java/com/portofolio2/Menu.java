@@ -104,18 +104,19 @@ public class Menu {
 
     private static void addAandeel() {
         Scanner scanner = new Scanner(System.in);
-        Aandeel aandeel = new Aandeel();
+        
 
         System.out.println("Welke aandeel wilt u toevoegen?");
 
         
-        aandeel.setNaam(scanner.nextLine());
+        String naam = scanner.nextLine();
 
         System.out.println("Hoeveel aandelen wilt u toevoegen?");
-        aandeel.setAantal(scanner.nextInt());
+        int aantal = scanner.nextInt();
 
         System.out.println("Hoeveel heeft u betaalt? 0.00");
-        aandeel.setPrijs(scanner.nextDouble());
+        double prijs = scanner.nextDouble();
+        Aandeel aandeel = new Aandeel(naam, prijs,aantal);
         
         gebruiker.addAandeel(aandeel);
         DataSeeder.writeAandeelToCSV(aandeel);

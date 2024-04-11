@@ -26,5 +26,10 @@ public class Kapitaalvorm {
     public int getAantal() { return aantal; }
     public void setAantal(int aantal) { this.aantal = aantal; }
 
+    public void toongegevens() {
+        System.out.println("(Dit is een eigen kapitaalvorm)");
+        System.out.println(naam +  ", $" + prijs + ", aantal: " + aantal);
+    }
+
     
 }

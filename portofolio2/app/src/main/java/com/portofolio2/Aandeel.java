@@ -2,11 +2,15 @@ package com.portofolio2;
 
 public class Aandeel extends Kapitaalvorm{
 
-    public Aandeel (String name, double prijs, int aantal) {
+    public Aandeel (String naam, double prijs, int aantal) {
         super();
+        this.naam = naam;
+        this.prijs = prijs;
+        this.aantal = aantal;
     }
 
-    public Aandeel () {
-        
+    @Override
+    public void toongegevens() {
+        System.out.println(naam +  ", $" + prijs + ", aantal: " + aantal);
     }
 }
