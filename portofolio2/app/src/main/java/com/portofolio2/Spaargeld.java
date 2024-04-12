@@ -11,6 +11,10 @@ public class Spaargeld {
         this.aantal = aantal;
         this.naam = naam;
     }
+
+    public Spaargeld()  {
+        
+    }
     
     public double getRente() { return rentePerc; }
 

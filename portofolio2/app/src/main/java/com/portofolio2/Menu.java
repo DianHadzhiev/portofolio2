@@ -31,7 +31,8 @@ public class Menu {
         System.out.println("");
         System.out.println("9. bereken dividend belastingbedrag");
         System.out.println("");
-        System.out.println("10. sluit af");
+        System.out.println("10. Voeg eigen kapitaalvorm toe");
+        System.out.println("11. sluit af");
 
     }
 
@@ -54,9 +55,10 @@ public class Menu {
                     
                     break;
                 case 2:
-                    addAandeel();
+                    addAandeel(scanner);
                     break;
                 case 3:
+                
                     
                     break;
                 case 4:
@@ -81,7 +83,11 @@ public class Menu {
                 case 9:
                     
                     break;
+
                 case 10:
+
+                    break;
+                case 11:
                 running = false;
                 System.out.println("Het programma wordt afgesloten");
                 default:
@@ -102,8 +108,8 @@ public class Menu {
     
 }
 
-    private static void addAandeel() {
-        Scanner scanner = new Scanner(System.in);
+    private static void addAandeel(Scanner scanner) {
+        
         
 
         System.out.println("Welke aandeel wilt u toevoegen?");
@@ -119,37 +125,107 @@ public class Menu {
         Aandeel aandeel = new Aandeel(naam, prijs,aantal);
         
         gebruiker.addAandeel(aandeel);
-        DataSeeder.writeAandeelToCSV(aandeel);
-
+        
+    }
     
-    
-}
+    private static void addCrypto(Scanner scanner) {
+        
+        
 
-    private static void removeStock() {
-        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welke aandeel wilt u toevoegen?");
+
+        
+        String naam = scanner.nextLine();
+
+        System.out.println("Hoeveel aandelen wilt u toevoegen?");
+        int aantal = scanner.nextInt();
+
+        System.out.println("Hoeveel heeft u betaalt? 0.00");
+        double prijs = scanner.nextDouble();
+        Aandeel aandeel = new Aandeel(naam, prijs,aantal);
+        
+        gebruiker.addAandeel(aandeel); // hier dubbel in gedaan misschine later weg
+        
+    }
+    private static void addObligatie(Scanner scanner) {
+        
+        
+
+        System.out.println("Welke aandeel wilt u toevoegen?");
+
+        
+        String naam = scanner.nextLine();
+
+        System.out.println("Hoeveel aandelen wilt u toevoegen?");
+        int aantal = scanner.nextInt();
+
+        System.out.println("Hoeveel heeft u betaalt? 0.00");
+        double prijs = scanner.nextDouble();
+        Aandeel aandeel = new Aandeel(naam, prijs,aantal);
+        
+        gebruiker.addAandeel(aandeel);
+        
+    }
+    private static void addkapitaalvorm(Scanner scanner) {
+        
+        
+
+        System.out.println("Welke kapitaalvorm wilt u toevoegen?");
+
+        
+        String naam = scanner.nextLine();
+
+        System.out.println("Hoeveel stuks wilt u toevoegen?");
+        int aantal = scanner.nextInt();
+
+        System.out.println("Hoeveel heeft u betaalt? 0.00");
+        double prijs = scanner.nextDouble();
+        Kapitaalvorm kapitaal = new Kapitaalvorm(naam, prijs,aantal);
+        
+        gebruiker.addkapitaalvorm(kapitaal);
+        
+    }
+
+
+
+
+
+
+
+    private static void verwijderAandeel(Scanner scanner) {
+        
         System.out.println("Welke aandeel wilt u verwijderen?");
         ArrayList <Aandeel> aandelen = gebruiker.getAandelen();
-
-        for (int i = 0; i < aandelen.size(); i++) {	  
-            System.out.println(i + " ." + aandelen.get(i)); 
+        int i = 1;
+        for (Aandeel aandeel : aandelen) {
+            System.out.println(i + " " + aandeel.getNaam());
+            i++;
         }
-        System.out.println("");
 
         System.out.println("Voer u keuze in: ");
         int keuze = scanner.nextInt();
-        gebruiker.DelAandeel(keuze);
-
-
-        
-
-
-    
-    
+        gebruiker.DelAandeel(keuze,"aandeel");  
 }
-    private static void calcBelasting() {
+
+
+    private static void verwijderCrypto() {
+        System.out.println("Welke crypto wilt u verwijderen?");
+        ArrayList <Aandeel> aandelen = gebruiker.getAandelen();
+        int i = 1;
+        for (Aandeel aandeel : aandelen) {
+            System.out.println(i + " " + aandeel.getNaam());
+            i++;
+        }
+
+        System.out.println("Voer u keuze in: ");
+        int keuze = scanner.nextInt();
+        gebruiker.DelAandeel(keuze,"aandeel"); 
+
+    }
+
     
     
-}
+
 
 
 
