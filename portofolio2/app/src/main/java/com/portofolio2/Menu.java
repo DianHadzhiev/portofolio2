@@ -208,7 +208,7 @@ public class Menu {
 }
 
 
-    private static void verwijderCrypto() {
+    private static void verwijderCrypto(Scanner scanner) {
         System.out.println("Welke crypto wilt u verwijderen?");
         ArrayList <Aandeel> aandelen = gebruiker.getAandelen();
         int i = 1;
@@ -222,6 +222,37 @@ public class Menu {
         gebruiker.DelAandeel(keuze,"aandeel"); 
 
     }
+
+    private static void verwijderobligatie (Scanner scanner) {
+        System.out.println("Welke obligatie wilt u verwijderen?");
+        ArrayList <Obligatie> obligaties = gebruiker.getObligaties();
+        int i = 1;
+        for (Obligatie obli : obligaties) {
+            System.out.println(i + " " + obli.getNaam());
+            i++;
+        }
+
+        System.out.println("Voer u keuze in: ");
+        int keuze = scanner.nextInt();
+        gebruiker.Delobligatie(keuze,"obligatie"); 
+
+    }
+    private static void verwijderKapitaal (Scanner scanner) {
+        System.out.println("Welke Kapitaalvorm wilt u verwijderen?");
+        ArrayList<Kapitaalvorm> kapitaal = new ArrayList<>();
+        int i = 1;
+        for (Kapitaalvorm kapitaalvorm : kapitaal) {
+            System.out.println(i + " " + kapitaalvorm.getNaam());
+            i++;
+        }
+
+        System.out.println("Voer u keuze in: ");
+        int keuze = scanner.nextInt();
+        gebruiker.Delkapitaal(keuze,"kapitaalvorm"); 
+
+    }
+
+
 
     
     
