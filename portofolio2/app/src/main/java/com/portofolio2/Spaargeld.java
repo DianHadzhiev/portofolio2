@@ -3,13 +3,13 @@ package com.portofolio2;
 
 public class Spaargeld {
     
-    private double rentePerc =1.017;
-    protected double aantal;
-    protected String naam;
+    private double rentePerc =0.017;
+    protected double aantal = 0.0;
+    
 
-    public Spaargeld (double aantal, String naam) {
+    public Spaargeld (double aantal) {
         this.aantal = aantal;
-        this.naam = naam;
+        
     }
 
     public Spaargeld()  {
@@ -26,17 +26,15 @@ public class Spaargeld {
 
     public void setAantal(double aantal) { this.aantal = aantal;}
 
-    
-    
-    public String getNaam() { return naam; }
-
-    public void setNaam(String naam) { this.naam = naam; }
+    public void addAantal(double aantal) {
+       this.aantal+=aantal;
+    }
 
 
     
     
     
-    public double berekenRente(int jaar) {
+    public double berekenRente(int jaar, double aantal) {
         double rentebedrag = 0.0;
         
         if (aantal < 20000) {

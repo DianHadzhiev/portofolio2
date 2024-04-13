@@ -26,14 +26,17 @@ public class Menu {
         System.out.println("6. Voeg obligatie toe");
         System.out.println("7. Verwijder obligatie");
         System.out.println("");
-        System.out.println("7. Voeg spaargeld toe");
-        System.out.println("8. bewerk spaargeld");
+        System.out.println("8. Voeg spaargeld toe");
+        System.out.println("9. bewerk spaargeld");
         System.out.println("");
-        System.out.println("9. bereken dividend belastingbedrag");
+        System.out.println("10. bereken dividend belastingbedrag");
+        System.out.println("11. bereken rente uit spaargeld");
         System.out.println("");
-        System.out.println("10. Voeg eigen kapitaalvorm toe");
-        System.out.println("11. sluit af");
-
+        System.out.println("12. Voeg eigen kapitaalvorm toe");
+        System.out.println("13. verwijder eigen kapitaalvorm");
+        System.out.println("");
+        System.out.println("15. sluit af");
+        
     }
 
 
@@ -55,41 +58,74 @@ public class Menu {
                     
                     break;
                 case 2:
+                clearScreen();
                     addAandeel(scanner);
                     break;
                 case 3:
-                
+                clearScreen();
+                    verwijderAandeel(scanner);
                     
                     break;
                 case 4:
+                clearScreen();
+                    addCrypto(scanner);
                     
                     break;
 
                 case 5:
+                clearScreen();
+                    verwijderCrypto(scanner);
                 
                     break;
                 
                 case 6:
+                clearScreen();
+                    addObligatie(scanner);
 
                     break;
 
                 case 7:
+                clearScreen();
+                    verwijderobligatie(scanner);
 
                     break;
                 case 8:
+                clearScreen();
+                addspaargeld(scanner);
 
                     break;
 
                 case 9:
+                clearScreen();
+                setSpaargeld(scanner);
                     
                     break;
 
                 case 10:
+                clearScreen();
 
                     break;
+
                 case 11:
-                running = false;
+
+                    break;
+                
+                case 12:
+                    addkapitaalvorm(scanner);
+                    
+                case 13:
+                    clearScreen();
+                    verwijderKapitaal(scanner);
+                    break;
+                
+                
+          
+        
+                case 14:
+                clearScreen();
                 System.out.println("Het programma wordt afgesloten");
+                running = false;
+                
                 default:
                     System.out.println("Ongeldige keuze. Probeer opnieuw.");
             }
@@ -103,10 +139,15 @@ public class Menu {
         scanner.nextLine();
     }
 
-    private static void viewPortfolio() {
+    private static void viewPortfolio(Scanner scanner) {
+        System.out.println("totaal portofeuille: " + gebruiker.getTotaleWaarde());
+        System.out.println();
+        System.out.println("Crypto:");
+        
+    }
     
     
-}
+
 
     private static void addAandeel(Scanner scanner) {
         
@@ -120,7 +161,7 @@ public class Menu {
         System.out.println("Hoeveel aandelen wilt u toevoegen?");
         int aantal = scanner.nextInt();
 
-        System.out.println("Hoeveel heeft u betaalt? 0.00");
+        System.out.println("wat was de waarde?");;
         double prijs = scanner.nextDouble();
         Aandeel aandeel = new Aandeel(naam, prijs,aantal);
         
@@ -140,7 +181,7 @@ public class Menu {
         System.out.println("Hoeveel aandelen wilt u toevoegen?");
         int aantal = scanner.nextInt();
 
-        System.out.println("Hoeveel heeft u betaalt? 0.00");
+        System.out.println("wat was de waarde?");
         double prijs = scanner.nextDouble();
         Aandeel aandeel = new Aandeel(naam, prijs,aantal);
         
@@ -159,11 +200,12 @@ public class Menu {
         System.out.println("Hoeveel aandelen wilt u toevoegen?");
         int aantal = scanner.nextInt();
 
-        System.out.println("Hoeveel heeft u betaalt? 0.00");
+        System.out.println("wat was de waarde?");
         double prijs = scanner.nextDouble();
         Aandeel aandeel = new Aandeel(naam, prijs,aantal);
         
         gebruiker.addAandeel(aandeel);
+        terugNaarHoofdmenu();
         
     }
     private static void addkapitaalvorm(Scanner scanner) {
@@ -178,15 +220,15 @@ public class Menu {
         System.out.println("Hoeveel stuks wilt u toevoegen?");
         int aantal = scanner.nextInt();
 
-        System.out.println("Hoeveel heeft u betaalt? 0.00");
+        System.out.println("wat was de waarde?");
         double prijs = scanner.nextDouble();
         Kapitaalvorm kapitaal = new Kapitaalvorm(naam, prijs,aantal);
         
         gebruiker.addkapitaalvorm(kapitaal);
+
+        terugNaarHoofdmenu();
         
     }
-
-
 
 
 
@@ -250,6 +292,26 @@ public class Menu {
         int keuze = scanner.nextInt();
         gebruiker.Delkapitaal(keuze,"kapitaalvorm"); 
 
+    }
+
+
+    private static void addspaargeld(Scanner scanner) {
+        
+        System.out.println("Hoeveel Euro  wilt u toevoegen?");
+        double aantal = scanner.nextDouble();
+        System.out.println("Succesvol toegevoegd");
+        
+        gebruiker.addSpaarGeld(aantal);
+    }
+
+    private static void setSpaargeld (Scanner scanner) {
+    System.out.println("Voer uw nieuw spaargeld bedrag: (0.00)");
+    double bedrag = scanner.nextDouble();
+    Spaargeld spaargeld = new Spaargeld(bedrag);
+
+    gebruiker.setSpaarGeld(spaargeld);
+    System.out.println("Succecvol bewerkt");
+        
     }
 
 

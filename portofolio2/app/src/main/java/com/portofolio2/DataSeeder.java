@@ -15,7 +15,7 @@ public class DataSeeder {
         try {
             String filePath = "crypto.csv";
             CSVWriter csvWriter = new CSVWriter((new FileWriter(filePath,true)));
-            String [] data ={ String.valueOf(crypto.naam), String.valueOf(crypto.prijs), String.valueOf(crypto.aantal)};
+            String [] data ={ String.valueOf(crypto.naam), String.valueOf(crypto.waarde), String.valueOf(crypto.aantal)};
         
             csvWriter.writeNext(data);
             System.out.println();
@@ -24,7 +24,7 @@ public class DataSeeder {
             
 
         } catch (IOException e) {
-            System.out.println("Er is iets missgegaan");
+            System.out.println("Er is iets missgegaan ");
         }
     }
 
@@ -51,7 +51,7 @@ public class DataSeeder {
                 }
             }
         } catch (IOException e) {
-        System.out.println("Er is iets misgegaan" + e.getMessage());
+        System.out.println("Er is iets misgegaan " + e.getMessage());
         }
 
         return list;
@@ -63,16 +63,16 @@ public class DataSeeder {
         try {
             String filePath = "aandeel.csv";
             CSVWriter csvWriter = new CSVWriter((new FileWriter(filePath,true)));
-            String [] data ={ String.valueOf(aandeel.naam), String.valueOf(aandeel.prijs), String.valueOf(aandeel.aantal)};
+            String [] data ={ String.valueOf(aandeel.naam), String.valueOf(aandeel.waarde), String.valueOf(aandeel.aantal)};
         
             csvWriter.writeNext(data);
             System.out.println();
-            System.out.println("Uw Aandeel is opgelslagen");
+            System.out.println("Uw Aandeel is opgelslagen ");
             csvWriter.close();
             
 
         } catch (IOException e) {
-            System.out.println("Er is iets missgegaan");
+            System.out.println("Er is iets missgegaan ");
         }
     }
 
@@ -100,7 +100,7 @@ public class DataSeeder {
 
             }
         } catch (IOException e) {
-        System.out.println("Er is iets misgegaan" + e.getMessage());
+        System.out.println("Er is iets misgegaan " + e.getMessage());
         }
         return lines;
     } 
@@ -112,7 +112,7 @@ public class DataSeeder {
         try {
             String filePath = "obligatie.csv";
             CSVWriter csvWriter = new CSVWriter((new FileWriter(filePath,true)));
-            String [] data ={ String.valueOf(obligatie.naam), String.valueOf(obligatie.prijs), String.valueOf(obligatie.aantal)};
+            String [] data ={ String.valueOf(obligatie.naam), String.valueOf(obligatie.waarde), String.valueOf(obligatie.aantal)};
         
             csvWriter.writeNext(data);
             System.out.println();
@@ -121,7 +121,7 @@ public class DataSeeder {
             
 
         } catch (IOException e) {
-            System.out.println("Er is iets missgegaan");
+            System.out.println("Er is iets missgegaan ");
         }
     }
 
@@ -148,7 +148,7 @@ public class DataSeeder {
             }
             
         } catch (IOException e) {
-        System.out.println("Er is iets misgegaan" + e.getMessage());
+        System.out.println("Er is iets misgegaan " + e.getMessage());
         }
         return lines;
 
@@ -162,7 +162,7 @@ public class DataSeeder {
         try {
             String filePath = "spaargeld.csv";
             CSVWriter csvWriter = new CSVWriter((new FileWriter(filePath,false)));
-            String [] data ={ String.valueOf(spaargeld.naam), String.valueOf(spaargeld.aantal)};
+            String [] data ={ String.valueOf(spaargeld.aantal)};
         
             csvWriter.writeNext(data);
             System.out.println();
@@ -171,7 +171,7 @@ public class DataSeeder {
             
 
         } catch (IOException e) {
-            System.out.println("Er is iets missgegaan");
+            System.out.println("Er is iets missgegaan ");
         }
     }
     
@@ -179,21 +179,20 @@ public class DataSeeder {
         String filePath = "spaargeld.csv";
         BufferedReader reader = null;
         String line ="";
-        Spaargeld spaargeld = new Spaargeld();
+        Spaargeld spaargeld = null;
 
         try {
             reader = new BufferedReader(new FileReader(filePath));
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
-                if (data.length == 2) {
-                    String naam = data[0].replaceAll("\"", "");
-                    int aantal = Integer.parseInt(data[1].replaceAll("\"", ""));
-                    spaargeld.setNaam(naam);
-                    spaargeld.setAantal(aantal);                   
+                if (data.length == 1) {
+                    double aantal = Double.parseDouble(data[0].replaceAll("\"", ""));
+                    
+                    spaargeld = new Spaargeld(aantal);                  
                 }
             } 
         } catch (IOException e) {
-        System.out.println("Er is iets misgegaan" + e.getMessage());
+        System.out.println("Er is iets misgegaan " + e.getMessage());
         }
         return spaargeld;
     }
@@ -226,7 +225,7 @@ public class DataSeeder {
             }
             
         } catch (IOException e) {
-        System.out.println("Er is iets misgegaan" + e.getMessage());
+        System.out.println("Er is iets misgegaan " + e.getMessage());
         }
         return lines;
     }
@@ -245,7 +244,7 @@ public class DataSeeder {
             
 
         } catch (IOException e) {
-            System.out.println("Er is iets missgegaan");
+            System.out.println("Er is iets missgegaan ");
         }
     }
  

@@ -25,6 +25,7 @@ class Gebruiker {
         this.crypto = seeder.readCryptoFromCSV();
         this.obligaties = seeder.readObligatieFromCSV();
         this.kapitaal = seeder.readKapitaalFromCSV();
+        this.spaargeld = seeder.readSpaargeldFromCSV();
     }
 
     
@@ -53,9 +54,11 @@ class Gebruiker {
 
 
     public double getTotaleWaarde() {
-        double totaleWaarde = 0.0;
-      
-        return totaleWaarde;
+       double totalewaarde = getWaardeAandelen() + getWaardeCrypto() + getWaardeObligatie() +getWaardekapitaalvormen();
+
+
+      return totalewaarde;
+       
     }
 
     public String getNaam() {
@@ -71,8 +74,16 @@ class Gebruiker {
         return spaargeld;
     }
 
+    public void addSpaarGeld(double bedrag) {
+        
+        double newbedrag = spaargeld.getAantal() + bedrag;
+        Spaargeld newsSpaargeld = new Spaargeld(newbedrag);
+        seeder.writeSpaargeldToCSV(newsSpaargeld);
+        
+    }
+
     public void setSpaarGeld(Spaargeld spaargeld) {
-        this.spaargeld = spaargeld;
+        seeder.writeSpaargeldToCSV(spaargeld);
        
     }
 
@@ -110,6 +121,53 @@ class Gebruiker {
     
         seeder.writeKapitaalToCSV(kapitaalvorm);
     }
+
+
+
+    public double getWaardeAandelen() {
+        double totalewaarde = 0.0;
+        for (Aandeel aandeel : aandelen)  {
+            int aantal = aandeel.getAantal();
+            double waarde = aandeel.getwaarde();
+            totalewaarde += aantal * waarde; 
+        }
+        return totalewaarde;
+    }
+
+    public double getWaardeCrypto() {
+        double totalewaarde = 0.0;
+        for (Crypto cryptos : crypto)  {
+            int aantal = cryptos.getAantal();
+            double waarde = cryptos.getwaarde();
+            totalewaarde += aantal * waarde; 
+        }
+        return totalewaarde;
+    }
+    public double getWaardeObligatie() {
+        double totalewaarde = 0.0;
+        for (Obligatie obligatie : obligaties){
+            int aantal = obligatie.getAantal();
+            double waarde = obligatie.getwaarde();
+            totalewaarde += aantal * waarde; 
+        }
+        return totalewaarde;
+    }
+
+    public double getWaardekapitaalvormen() {
+        double totalewaarde = 0.0;
+        for (Kapitaalvorm kapitaalvormen : kapitaal){
+            int aantal = kapitaalvormen.getAantal();
+            double waarde = kapitaalvormen.getwaarde();
+            totalewaarde += aantal * waarde; 
+        }
+        return totalewaarde;
+    }
+
+    
+
+
+
+
 
     
 }
