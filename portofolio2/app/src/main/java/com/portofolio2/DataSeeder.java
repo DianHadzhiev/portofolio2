@@ -256,10 +256,64 @@ public class DataSeeder {
 
 
 
-    public void verwijder(int Index, String kapitaalvorm) {
+    
+    
+    public void verwijderAandeel(int Index) { 
+        String temp = "temp.csv";
+        String filepath = "C:/Users/didoh/OneDrive/Desktop/portofolio2/portofolio2/aandeel.csv";
+        File oldfile = new File(filepath);
+        File newfile = new File(temp);
+    
+        int line = 0;
+        String currentLine;
+    
+        try (FileWriter fw = new FileWriter(temp);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter pw = new PrintWriter(bw);
+             FileReader fr = new FileReader(filepath);
+             BufferedReader br = new BufferedReader(fr)) {
+    
+            while ((currentLine = br.readLine()) != null) {
+                line++;
+    
+                if (Index != line) {
+                    pw.println(currentLine);
+                }
+            }
+    
+            // Close the streams
+            pw.flush();
+            pw.close();
+            bw.close();
+            fw.close();
+            fr.close();
+            br.close();
+    
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            try {
+                // Delete the old file and rename the new file
+                if (!oldfile.delete()) {
+                    System.out.println("Failed to delete the old file.");
+                    return;
+                }
+                File dump = new File(filepath);
+                if (!newfile.renameTo(dump)) {
+                    System.out.println("Failed to rename the new file.");
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+    
+
+
+    public void verwijderCrypto(int Index) {
         
         String temp = "temp.csv";
-        String filepath = kapitaalvorm + ".csv";
+        String filepath = "crypto.csv";
         File oldfile = new File(filepath);
         File newfile = new File(temp);
     
@@ -288,6 +342,102 @@ public class DataSeeder {
             br.close();
             bw.close();
             fw.close();
+
+            
+    
+            if (!oldfile.delete()) {
+                System.out.println("Failed to delete the old file.");
+                return;
+            }
+            File dump = new File(filepath);
+            if (!newfile.renameTo(dump)) {
+                System.out.println("Failed to rename the new file.");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public void verwijderObligaties(int Index) {
+        
+        String temp = "temp.csv";
+        String filepath =  "obligatie.csv";
+        File oldfile = new File(filepath);
+        File newfile = new File(temp);
+    
+        int line = 0;
+        String currentLine;
+    
+        try {
+            FileWriter fw = new FileWriter(temp);
+    
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+    
+            FileReader fr = new FileReader(filepath);
+            BufferedReader br = new BufferedReader(fr);
+    
+            while ((currentLine = br.readLine()) != null) {
+                line++;
+    
+                if (Index != line) {
+                    pw.println(currentLine);
+                }
+            }
+            pw.flush();
+            pw.close();
+            fr.close();
+            br.close();
+            bw.close();
+            fw.close();
+
+            
+    
+            if (!oldfile.delete()) {
+                System.out.println("Failed to delete the old file.");
+                return;
+            }
+            File dump = new File(filepath);
+            if (!newfile.renameTo(dump)) {
+                System.out.println("Failed to rename the new file.");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public void verwijderKapitaalvorm(int Index) {
+        
+        String temp = "temp.csv";
+        String filepath = "kapitaalvorm.csv";
+        File oldfile = new File(filepath);
+        File newfile = new File(temp);
+    
+        int line = 0;
+        String currentLine;
+    
+        try {
+            FileWriter fw = new FileWriter(temp);
+    
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+    
+            FileReader fr = new FileReader(filepath);
+            BufferedReader br = new BufferedReader(fr);
+    
+            while ((currentLine = br.readLine()) != null) {
+                line++;
+    
+                if (Index != line) {
+                    pw.println(currentLine);
+                }
+            }
+            pw.flush();
+            pw.close();
+            fr.close();
+            br.close();
+            bw.close();
+            fw.close();
+
+            
     
             if (!oldfile.delete()) {
                 System.out.println("Failed to delete the old file.");

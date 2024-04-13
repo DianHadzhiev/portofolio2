@@ -11,43 +11,30 @@ class Gebruiker {
 
     DataSeeder seeder = new DataSeeder();
 
-    
-    public Gebruiker(String naam) {
-        this.naam = naam;
-        this.aandelen = seeder.readAandeelFromCSV();
-        this.crypto = seeder.readCryptoFromCSV();
-        this.obligaties = seeder.readObligatieFromCSV();
-        this.kapitaal = seeder.readKapitaalFromCSV();
-    }
-
+   
     public Gebruiker() {
-        this.aandelen = seeder.readAandeelFromCSV();
-        this.crypto = seeder.readCryptoFromCSV();
-        this.obligaties = seeder.readObligatieFromCSV();
-        this.kapitaal = seeder.readKapitaalFromCSV();
-        this.spaargeld = seeder.readSpaargeldFromCSV();
     }
 
     
     
 
-    public void DelAandeel(int index, String naam) {
+    public void DelAandeel(int index) {
     
-    seeder.verwijder(index, naam);
+    seeder.verwijderAandeel(index);
     }
-    public void Delcrypto(int index,String naam) {
+    public void Delcrypto(int index) {
     
-    seeder.verwijder(index, naam);
+    seeder.verwijderCrypto(index);
     }
     
-    public void Delobligatie(int index, String naam) {
+    public void Delobligatie(int index) {
 
-    seeder.verwijder(index, naam);
+    seeder.verwijderObligaties(index);
     }
 
-    public void Delkapitaal(int index, String naam) {
+    public void Delkapitaal(int index) {
     
-    seeder.verwijder(index, naam);
+    seeder.verwijderKapitaalvorm(index);
     }
 
 
@@ -88,18 +75,23 @@ class Gebruiker {
     }
 
     public ArrayList<Aandeel> getAandelen() {
+        this.aandelen = seeder.readAandeelFromCSV();
         return aandelen;
     }
 
     public ArrayList<Obligatie> getObligaties() {
+        this.obligaties = seeder.readObligatieFromCSV();
         return obligaties;
     }
 
     public ArrayList<Crypto> getCrypto() {
+        this.crypto = seeder.readCryptoFromCSV();
         return crypto;
     }
 
-    public ArrayList<Kapitaalvorm> getKapitaalvorms() { return kapitaal; }
+    public ArrayList<Kapitaalvorm> getKapitaalvorms() { 
+        this.kapitaal = seeder.readKapitaalFromCSV();
+        return kapitaal; }
 
     public void addObligatie(Obligatie obligatie) {
     
@@ -126,7 +118,7 @@ class Gebruiker {
 
     public double getWaardeAandelen() {
         double totalewaarde = 0.0;
-        for (Aandeel aandeel : aandelen)  {
+        for (Aandeel aandeel : getAandelen())  {
             int aantal = aandeel.getAantal();
             double waarde = aandeel.getwaarde();
             totalewaarde += aantal * waarde; 
@@ -136,7 +128,7 @@ class Gebruiker {
 
     public double getWaardeCrypto() {
         double totalewaarde = 0.0;
-        for (Crypto cryptos : crypto)  {
+        for (Crypto cryptos : getCrypto())  {
             int aantal = cryptos.getAantal();
             double waarde = cryptos.getwaarde();
             totalewaarde += aantal * waarde; 
@@ -145,7 +137,7 @@ class Gebruiker {
     }
     public double getWaardeObligatie() {
         double totalewaarde = 0.0;
-        for (Obligatie obligatie : obligaties){
+        for (Obligatie obligatie : getObligaties()){
             int aantal = obligatie.getAantal();
             double waarde = obligatie.getwaarde();
             totalewaarde += aantal * waarde; 
@@ -155,7 +147,7 @@ class Gebruiker {
 
     public double getWaardekapitaalvormen() {
         double totalewaarde = 0.0;
-        for (Kapitaalvorm kapitaalvormen : kapitaal){
+        for (Kapitaalvorm kapitaalvormen : getKapitaalvorms()){
             int aantal = kapitaalvormen.getAantal();
             double waarde = kapitaalvormen.getwaarde();
             totalewaarde += aantal * waarde; 

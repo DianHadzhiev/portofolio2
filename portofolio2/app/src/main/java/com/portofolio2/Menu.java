@@ -47,7 +47,7 @@ public class Menu {
 
         while (running) {
 
-            clearScreen();
+            
             printMenu();
             System.out.print("Voer uw keuze in: ");
             int choice = scanner.nextInt();
@@ -55,7 +55,7 @@ public class Menu {
 
             switch (choice) {
                 case 1:
-                    
+                    viewPortfolio(scanner);
                     break;
                 case 2:
                 clearScreen();
@@ -137,12 +137,14 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Druk op Enter om terug te gaan naar het hoofdmenu.");
         scanner.nextLine();
+        
     }
 
     private static void viewPortfolio(Scanner scanner) {
+        clearScreen();
         System.out.println("totaal portofeuille: " + gebruiker.getTotaleWaarde());
         System.out.println();
-        System.out.println("Crypto:");
+        terugNaarHoofdmenu();
         
     }
     
@@ -173,38 +175,38 @@ public class Menu {
         
         
 
-        System.out.println("Welke aandeel wilt u toevoegen?");
+        System.out.println("Welke crypto wilt u toevoegen?");
 
         
         String naam = scanner.nextLine();
 
-        System.out.println("Hoeveel aandelen wilt u toevoegen?");
+        System.out.println("Hoeveel wilt u toevoegen?");
         int aantal = scanner.nextInt();
 
         System.out.println("wat was de waarde?");
-        double prijs = scanner.nextDouble();
-        Aandeel aandeel = new Aandeel(naam, prijs,aantal);
+        double waarde = scanner.nextDouble();
+        Crypto crypto = new Crypto(naam,waarde,aantal);
         
-        gebruiker.addAandeel(aandeel); // hier dubbel in gedaan misschine later weg
+        gebruiker.addCrypto(crypto); // hier dubbel in gedaan misschine later weg
         
     }
     private static void addObligatie(Scanner scanner) {
         
         
 
-        System.out.println("Welke aandeel wilt u toevoegen?");
+        System.out.println("Welke obligatie wilt u toevoegen?");
 
         
         String naam = scanner.nextLine();
 
-        System.out.println("Hoeveel aandelen wilt u toevoegen?");
+        System.out.println("Hoeveel obligaties wilt u toevoegen?");
         int aantal = scanner.nextInt();
 
         System.out.println("wat was de waarde?");
         double prijs = scanner.nextDouble();
-        Aandeel aandeel = new Aandeel(naam, prijs,aantal);
+        Obligatie obligatie = new Obligatie(naam, prijs, aantal);
         
-        gebruiker.addAandeel(aandeel);
+        gebruiker.addObligatie(obligatie);
         terugNaarHoofdmenu();
         
     }
@@ -246,7 +248,7 @@ public class Menu {
 
         System.out.println("Voer u keuze in: ");
         int keuze = scanner.nextInt();
-        gebruiker.DelAandeel(keuze,"aandeel");  
+        gebruiker.DelAandeel(keuze);  
 }
 
 
@@ -261,7 +263,7 @@ public class Menu {
 
         System.out.println("Voer u keuze in: ");
         int keuze = scanner.nextInt();
-        gebruiker.DelAandeel(keuze,"aandeel"); 
+        gebruiker.Delcrypto(keuze); 
 
     }
 
@@ -276,7 +278,7 @@ public class Menu {
 
         System.out.println("Voer u keuze in: ");
         int keuze = scanner.nextInt();
-        gebruiker.Delobligatie(keuze,"obligatie"); 
+        gebruiker.Delobligatie(keuze); 
 
     }
     private static void verwijderKapitaal (Scanner scanner) {
@@ -290,7 +292,7 @@ public class Menu {
 
         System.out.println("Voer u keuze in: ");
         int keuze = scanner.nextInt();
-        gebruiker.Delkapitaal(keuze,"kapitaalvorm"); 
+        gebruiker.Delkapitaal(keuze); 
 
     }
 
