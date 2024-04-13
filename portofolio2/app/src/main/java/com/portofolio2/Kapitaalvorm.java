@@ -2,22 +2,22 @@ package com.portofolio2;
 
 public class Kapitaalvorm {
     protected String naam;
-    protected Double prijs;
+    protected Double waarde;
     protected int aantal;
 
     public Kapitaalvorm () {
 
     }
 
-    public Kapitaalvorm (String naam, Double prijs, int aantal) {
+    public Kapitaalvorm (String naam, Double waarde, int aantal) {
         this.naam = naam;
-        this.prijs = prijs;
+        this.waarde = waarde;
         this.aantal = aantal;
 
     }
     
-    public double getPrijs() { return prijs; }
-    public void setPrijs(double prijs) { this.prijs = prijs; }
+    public double getwaarde() { return waarde; }
+    public void setwaarde(double waarde) { this.waarde = waarde; }
 
 
     public String getNaam() { return naam; }
@@ -28,7 +28,7 @@ public class Kapitaalvorm {
 
     public void toongegevens() {
         System.out.println("(Dit is een eigen kapitaalvorm)");
-        System.out.println(naam +  ", $" + prijs + ", aantal: " + aantal);
+        System.out.println(naam +  ", $" + waarde + ", aantal: " + aantal);
     }
 
     
