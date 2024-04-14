@@ -68,11 +68,9 @@ public class DataSeederTest {
     @Test
     public void testdividendbelasting() {
         
-        double verwacht1 = 17;
-        double dividend1 = 1000;
-        double werkelijk = menu.berekendividend(dividend1);
+       
 
-        assertEquals(verwacht1, werkelijk, 0.001);
+        assertEquals(150, menu.berekendividend(1000.0), 0.001);
     }
 
 

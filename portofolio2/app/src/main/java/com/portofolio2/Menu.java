@@ -107,6 +107,7 @@ public class Menu {
                 double dividend = scanner.nextDouble();
                 double dividendd = berekendividend(dividend);
                 System.out.printf("Uw belasting bedrag: $ %.2f %n" , dividendd);
+                terugNaarHoofdmenu();
 
 
                     break;
@@ -438,7 +439,7 @@ public class Menu {
     public double berekendividend(Double dividend) {
          
         double belasting = dividend * 0.15;
-        terugNaarHoofdmenu();
+        
         return belasting;
         
 
