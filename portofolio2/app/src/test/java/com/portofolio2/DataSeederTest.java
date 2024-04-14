@@ -26,7 +26,7 @@ public class DataSeederTest {
 
 
 
-
+// test of een crypto goed voor in en uitgelezen uit een csv file zodat het na aflsuiten van het programma nogsteeds informatie beschikbaar is
     @Test
     public void WriteAndReadCrypto() {
         Crypto crypto = new Crypto("Bitcoin", 63000.0, 1);
@@ -40,7 +40,7 @@ public class DataSeederTest {
         assertEquals(1, cryptomunt.getAantal());
     }
 
-
+// test of een aandeel goed voor in en uitgelezen uit een csv file zodat het na aflsuiten van het programma nogsteeds informatie beschikbaar is
     @Test
     public void testWriteAndReadAandeel() {
         Aandeel aandeel = new Aandeel("Apple", 150.0, 10);
@@ -52,19 +52,20 @@ public class DataSeederTest {
         assertEquals(150.0, readAandeel.getwaarde(), 0.001);
         assertEquals(10, readAandeel.getAantal());
     }
-
+// test of een obligatie goed voor in en uitgelezen uit een csv file zodat het na aflsuiten van het programma nogsteeds informatie beschikbaar is
     public void testWriteAndReadObligatie() {
         Obligatie obligatie = new Obligatie("Aegon", 9.64, 200);
         Obligatie obligatie2 = new Obligatie("Aegon", 9.66, 100);
         dataSeeder.writeObligatieToCSV(obligatie);
         dataSeeder.writeObligatieToCSV(obligatie2);
+        
         ArrayList <Obligatie> obligaties = dataSeeder.readObligatieFromCSV();
 
         Obligatie obliGatie = obligaties.get(1);
         assertEquals(9.66,obliGatie.getwaarde(), 0.001);
 
     }
-
+//test of dividend belasting correct berekend wordt (15% belasting)
     @Test
     public void testdividendbelasting() {
         
@@ -73,7 +74,7 @@ public class DataSeederTest {
         assertEquals(150, menu.berekendividend(1000.0), 0.001);
     }
 
-
+//test of het rente bedrag goed uitgerekent wordt
     @Test
     public void testRente() {
         Spaargeld spaargeld = new Spaargeld(1337.00);
