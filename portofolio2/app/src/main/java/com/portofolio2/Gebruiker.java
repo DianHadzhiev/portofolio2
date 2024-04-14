@@ -6,7 +6,7 @@ class Gebruiker {
     private ArrayList<Crypto> crypto;
     private ArrayList<Obligatie> obligaties;
     private ArrayList<Kapitaalvorm> kapitaal;
-    private Spaargeld spaargeld;
+    private Spaargeld spaargeld = new Spaargeld();
     private String naam;
 
     DataSeeder seeder = new DataSeeder();
@@ -41,7 +41,7 @@ class Gebruiker {
 
 
     public double getTotaleWaarde() {
-       double totalewaarde = getWaardeAandelen() + getWaardeCrypto() + getWaardeObligatie() +getWaardekapitaalvormen();
+    double totalewaarde = getWaardeAandelen() + getWaardeCrypto() + getWaardeObligatie() +getWaardekapitaalvormen();
 
 
       return totalewaarde;
@@ -57,12 +57,12 @@ class Gebruiker {
     }
 
     public Spaargeld getSpaarGeld() {
-        
+        this.spaargeld = seeder.readSpaargeldFromCSV();
         return spaargeld;
     }
 
     public void addSpaarGeld(double bedrag) {
-        
+        spaargeld = getSpaarGeld();
         double newbedrag = spaargeld.getAantal() + bedrag;
         Spaargeld newsSpaargeld = new Spaargeld(newbedrag);
         seeder.writeSpaargeldToCSV(newsSpaargeld);
@@ -116,6 +116,57 @@ class Gebruiker {
 
 
 
+    
+    public void toonWaardeAandelen() {
+        double totalewaarde = 0.0;
+
+        for (Aandeel aandeel : getAandelen())  {
+            int aantal = aandeel.getAantal();
+            double waarde = aandeel.getwaarde();
+            totalewaarde += aantal * waarde; 
+            aandeel.toongegevens();
+        }
+        System.out.println("totaal: $" + totalewaarde);
+        
+    }
+
+    public void toonWaardeCrypto() {
+        double totalewaarde = 0.0;
+        for (Crypto cryptos : getCrypto())  {
+            int aantal = cryptos.getAantal();
+            double waarde = cryptos.getwaarde();
+            totalewaarde += aantal * waarde; 
+            cryptos.toongegevens();
+        }
+        System.out.println("totaal: $" + totalewaarde);
+        
+    }
+    public void toonWaardeObligatie() {
+        double totalewaarde = 0.0;
+        for (Obligatie obligatie : getObligaties()){
+            int aantal = obligatie.getAantal();
+            double waarde = obligatie.getwaarde();
+            totalewaarde += aantal * waarde; 
+            obligatie.toongegevens();
+        }
+        System.out.println("totaal: $" + totalewaarde);
+        
+    }
+
+    public void toonWaardekapitaalvormen() {
+        double totalewaarde = 0.0;
+        for (Kapitaalvorm kapitaalvormen : getKapitaalvorms()){
+            int aantal = kapitaalvormen.getAantal();
+            double waarde = kapitaalvormen.getwaarde();
+            totalewaarde += aantal * waarde; 
+            kapitaalvormen.toongegevens();
+        }
+        System.out.println("totaal: $" + totalewaarde);
+        
+    }
+
+    
+    
     public double getWaardeAandelen() {
         double totalewaarde = 0.0;
         for (Aandeel aandeel : getAandelen())  {
@@ -155,11 +206,22 @@ class Gebruiker {
         return totalewaarde;
     }
 
-    
+
+    public double getSpaargeldaantal () {
+        Spaargeld spaargeld = getSpaarGeld();
+        double aantal = spaargeld.getAantal();
+
+        return aantal;
+    }
 
 
 
+    public double berekenrente (int jaar) {
+        Spaargeld spaargeld = getSpaarGeld();
 
+       double rente = spaargeld.berekenRente(jaar, spaargeld.getAantal());
 
+       return rente;
+    }
     
 }

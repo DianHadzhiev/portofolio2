@@ -50,6 +50,7 @@ public class DataSeeder {
                     list.add(crypto);   
                 }
             }
+            reader.close();
         } catch (IOException e) {
         System.out.println("Er is iets misgegaan " + e.getMessage());
         }
@@ -90,15 +91,17 @@ public class DataSeeder {
                 String[] data = line.split(",");
                 if (data.length == 3) {
                     String naam = data[0].replaceAll("\"", "");
-                    double prijs = Double.parseDouble(data[1].replaceAll("\"", ""));
+                    double waarde = Double.parseDouble(data[1].replaceAll("\"", ""));
                     int aantal = Integer.parseInt(data[2].replaceAll("\"", ""));
 
-                    Aandeel aandeel = new Aandeel(naam, prijs, aantal);
+                    Aandeel aandeel = new Aandeel(naam, waarde, aantal);
                     lines.add(aandeel);
                     
                 }
+                
 
             }
+            reader.close();
         } catch (IOException e) {
         System.out.println("Er is iets misgegaan " + e.getMessage());
         }
@@ -137,15 +140,16 @@ public class DataSeeder {
                 String[] data = line.split(",");
                 if (data.length == 3) {
                     String naam = data[0].replaceAll("\"", "");
-                    double prijs = Double.parseDouble(data[1].replaceAll("\"", ""));
+                    double waarde = Double.parseDouble(data[1].replaceAll("\"", ""));
                     int aantal = Integer.parseInt(data[2].replaceAll("\"", ""));
 
-                    Obligatie obligatie = new Obligatie(naam, prijs, aantal);
+                    Obligatie obligatie = new Obligatie(naam, waarde, aantal);
                     lines.add(obligatie);
                    
                     
                 }
             }
+            reader.close();
             
         } catch (IOException e) {
         System.out.println("Er is iets misgegaan " + e.getMessage());
@@ -191,6 +195,7 @@ public class DataSeeder {
                     spaargeld = new Spaargeld(aantal);                  
                 }
             } 
+            reader.close();
         } catch (IOException e) {
         System.out.println("Er is iets misgegaan " + e.getMessage());
         }
@@ -214,15 +219,17 @@ public class DataSeeder {
                 String[] data = line.split(",");
                 if (data.length == 3) {
                     String naam = data[0].replaceAll("\"", "");
-                    double prijs = Double.parseDouble(data[1].replaceAll("\"", ""));
+                    double waarde = Double.parseDouble(data[1].replaceAll("\"", ""));
                     int aantal = Integer.parseInt(data[2].replaceAll("\"", ""));
 
-                    Kapitaalvorm kapitaalvorm = new Kapitaalvorm(naam, prijs, aantal);
+                    Kapitaalvorm kapitaalvorm = new Kapitaalvorm(naam, waarde, aantal);
                     lines.add(kapitaalvorm);
                    
                     
                 }
             }
+            reader.close();
+             
             
         } catch (IOException e) {
         System.out.println("Er is iets misgegaan " + e.getMessage());
@@ -235,7 +242,7 @@ public class DataSeeder {
         try {
             String filePath = "kapitaalvorm.csv";
             CSVWriter csvWriter = new CSVWriter((new FileWriter(filePath,true)));
-            String [] data ={ String.valueOf(kapitaal.naam), String.valueOf(kapitaal.aantal)};
+            String [] data ={ String.valueOf(kapitaal.naam), String.valueOf(kapitaal.waarde), String.valueOf(kapitaal.aantal)};
         
             csvWriter.writeNext(data);
             System.out.println();
@@ -260,7 +267,7 @@ public class DataSeeder {
     
     public void verwijderAandeel(int Index) { 
         String temp = "temp.csv";
-        String filepath = "C:/Users/didoh/OneDrive/Desktop/portofolio2/portofolio2/aandeel.csv";
+        String filepath = "aandeel.csv";
         File oldfile = new File(filepath);
         File newfile = new File(temp);
     
@@ -281,18 +288,23 @@ public class DataSeeder {
                 }
             }
     
-            // Close the streams
-            pw.flush();
-            pw.close();
-            bw.close();
-            fw.close();
-            fr.close();
-            br.close();
+           try {pw.flush();
+                pw.close();
+                fr.close();
+                br.close();
+                bw.close();
+                fw.close(); 
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+           
+            
     
         } catch (Exception e) {
             System.out.println(e);
         } finally {
             try {
+                
                 // Delete the old file and rename the new file
                 if (!oldfile.delete()) {
                     System.out.println("Failed to delete the old file.");
@@ -451,5 +463,8 @@ public class DataSeeder {
             System.out.println(e);
         }
     }
+
+
+
     
 }

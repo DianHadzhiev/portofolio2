@@ -29,6 +29,7 @@ public class Kapitaalvorm {
     public void toongegevens() {
         System.out.println("(Dit is een eigen kapitaalvorm)");
         System.out.println(naam +  ", $" + waarde + ", aantal: " + aantal);
+        System.out.println("");
     }
 
     

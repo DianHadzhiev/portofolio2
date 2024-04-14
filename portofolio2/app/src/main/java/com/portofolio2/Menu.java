@@ -35,7 +35,7 @@ public class Menu {
         System.out.println("12. Voeg eigen kapitaalvorm toe");
         System.out.println("13. verwijder eigen kapitaalvorm");
         System.out.println("");
-        System.out.println("15. sluit af");
+        System.out.println("14. sluit af");
         
     }
 
@@ -47,7 +47,7 @@ public class Menu {
 
         while (running) {
 
-            
+            clearScreen();
             printMenu();
             System.out.print("Voer uw keuze in: ");
             int choice = scanner.nextInt();
@@ -103,29 +103,34 @@ public class Menu {
 
                 case 10:
                 clearScreen();
+                System.out.println("Hoeveel dividend heeft u ontvangen?");
+                double dividend = scanner.nextDouble();
+                double dividendd = berekendividend(dividend);
+                System.out.printf("Uw belasting bedrag: $ %.2f %n" , dividendd);
+
 
                     break;
 
                 case 11:
+                clearScreen();
+                berekenrente(scanner);
 
                     break;
                 
                 case 12:
+                    clearScreen();
                     addkapitaalvorm(scanner);
+                    break;
                     
                 case 13:
                     clearScreen();
                     verwijderKapitaal(scanner);
                     break;
-                
-                
-          
-        
                 case 14:
                 clearScreen();
                 System.out.println("Het programma wordt afgesloten");
                 running = false;
-                
+                break;
                 default:
                     System.out.println("Ongeldige keuze. Probeer opnieuw.");
             }
@@ -137,19 +142,85 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Druk op Enter om terug te gaan naar het hoofdmenu.");
         scanner.nextLine();
+        scanner.close();
         
     }
 
     private static void viewPortfolio(Scanner scanner) {
         clearScreen();
+        
+        boolean running = true;
+
+        while (running) {
+        clearScreen();
         System.out.println("totaal portofeuille: " + gebruiker.getTotaleWaarde());
         System.out.println();
-        terugNaarHoofdmenu();
+        System.out.println("1. aandelen");
+        System.out.println("2. crypto");
+        System.out.println("3. obligaties");
+        System.out.println("4. eigen kapitaalvormen");
+        System.out.println("5. spaargeld");
+        System.out.println("6. terug naar hoofdmenu");
+        System.out.println("Wat wilt u bekijken?");
+
+        int keuze =scanner.nextInt();
+
+       
+            switch(keuze) {
+    
+                case 1 :
+                clearScreen();
+                gebruiker.toonWaardeAandelen();
+                scanner.nextLine();
+    
+                break;
+    
+                case 2 :
+                clearScreen();
+                gebruiker.toonWaardeCrypto();
+    
+                break;
+    
+                case 3:
+                clearScreen();
+                gebruiker.toonWaardeObligatie();
+    
+                break;
+                
+                case 4 :
+                clearScreen();
+                gebruiker.toonWaardekapitaalvormen();
+    
+                break;
+    
+                case 5 :
+                clearScreen();
+                System.out.println("Spaargeld: $" + gebruiker.getSpaargeldaantal());
+    
+                break;
+    
+                case 6:
+                clearScreen();
+                running = false;
+                
+    
+                break;
+
+                default:
+                    System.out.println("Ongeldige keuze. Probeer opnieuw.");
+    
+    
+    
+            }
+            terugNaarHoofdmenu();
+        }
+        
         
     }
-    
-    
 
+        
+    
+    
 
     private static void addAandeel(Scanner scanner) {
         
@@ -168,6 +239,7 @@ public class Menu {
         Aandeel aandeel = new Aandeel(naam, prijs,aantal);
         
         gebruiker.addAandeel(aandeel);
+        terugNaarHoofdmenu();
         
     }
     
@@ -188,6 +260,8 @@ public class Menu {
         Crypto crypto = new Crypto(naam,waarde,aantal);
         
         gebruiker.addCrypto(crypto); // hier dubbel in gedaan misschine later weg
+        System.out.println("Succesvol toegevoegd");
+        terugNaarHoofdmenu();
         
     }
     private static void addObligatie(Scanner scanner) {
@@ -207,12 +281,11 @@ public class Menu {
         Obligatie obligatie = new Obligatie(naam, prijs, aantal);
         
         gebruiker.addObligatie(obligatie);
+        scanner.nextLine();
         terugNaarHoofdmenu();
         
     }
     private static void addkapitaalvorm(Scanner scanner) {
-        
-        
 
         System.out.println("Welke kapitaalvorm wilt u toevoegen?");
 
@@ -227,7 +300,8 @@ public class Menu {
         Kapitaalvorm kapitaal = new Kapitaalvorm(naam, prijs,aantal);
         
         gebruiker.addkapitaalvorm(kapitaal);
-
+        scanner.nextLine();
+        System.out.println("Succesvol toegevoegd");
         terugNaarHoofdmenu();
         
     }
@@ -238,37 +312,59 @@ public class Menu {
 
     private static void verwijderAandeel(Scanner scanner) {
         
-        System.out.println("Welke aandeel wilt u verwijderen?");
+        
         ArrayList <Aandeel> aandelen = gebruiker.getAandelen();
         int i = 1;
-        for (Aandeel aandeel : aandelen) {
-            System.out.println(i + " " + aandeel.getNaam());
-            i++;
+        
+        if(aandelen == null) {
+            System.out.println("U heeft geen aandelen");
+            terugNaarHoofdmenu();
+        } 
+        else {
+            System.out.println("Welke aandeel wilt u verwijderen? of voer 0 in om terug te gaan");
+            for (Aandeel aandeel : aandelen) {
+                System.out.println(i + " " + aandeel.getNaam());
+                i++;
+            }
+
+            System.out.println("Voer u keuze in: ");
+            int keuze = scanner.nextInt();
+            if (keuze == 0) { terugNaarHoofdmenu();
+            } else {
+                gebruiker.DelAandeel(keuze); 
+                terugNaarHoofdmenu();
+            }
         }
 
-        System.out.println("Voer u keuze in: ");
-        int keuze = scanner.nextInt();
-        gebruiker.DelAandeel(keuze);  
-}
+        }
 
 
     private static void verwijderCrypto(Scanner scanner) {
-        System.out.println("Welke crypto wilt u verwijderen?");
-        ArrayList <Aandeel> aandelen = gebruiker.getAandelen();
+        
+        ArrayList <Crypto> crypto = gebruiker.getCrypto();
         int i = 1;
-        for (Aandeel aandeel : aandelen) {
-            System.out.println(i + " " + aandeel.getNaam());
+        
+            System.out.println("Welke crypto wilt u verwijderen? of voer 0 in om terug te gaan");
+            for (Crypto cryptos : crypto) {
+            System.out.println(i + " " + cryptos.getNaam());
             i++;
+            }
+
+            System.out.println("Voer u keuze in: ");
+            int keuze = scanner.nextInt();
+            if (keuze == 0) { terugNaarHoofdmenu();
+            } else {
+                gebruiker.Delcrypto(keuze); 
+                terugNaarHoofdmenu();
+            }
+
         }
+        
 
-        System.out.println("Voer u keuze in: ");
-        int keuze = scanner.nextInt();
-        gebruiker.Delcrypto(keuze); 
-
-    }
+    
 
     private static void verwijderobligatie (Scanner scanner) {
-        System.out.println("Welke obligatie wilt u verwijderen?");
+        System.out.println("Welke obligatie wilt u verwijderen? of voer 0 in om terug te gaan");
         ArrayList <Obligatie> obligaties = gebruiker.getObligaties();
         int i = 1;
         for (Obligatie obli : obligaties) {
@@ -278,21 +374,32 @@ public class Menu {
 
         System.out.println("Voer u keuze in: ");
         int keuze = scanner.nextInt();
-        gebruiker.Delobligatie(keuze); 
+        if (keuze == 0) { terugNaarHoofdmenu();
+        } else {
+            gebruiker.Delobligatie(keuze); 
+            terugNaarHoofdmenu();
+
+        }
+        
+        
 
     }
     private static void verwijderKapitaal (Scanner scanner) {
+        
         System.out.println("Welke Kapitaalvorm wilt u verwijderen?");
-        ArrayList<Kapitaalvorm> kapitaal = new ArrayList<>();
+        ArrayList<Kapitaalvorm> kapitaal = gebruiker.getKapitaalvorms();
         int i = 1;
         for (Kapitaalvorm kapitaalvorm : kapitaal) {
             System.out.println(i + " " + kapitaalvorm.getNaam());
             i++;
         }
 
-        System.out.println("Voer u keuze in: ");
+        System.out.println("Voer u keuze in of voer 0 in om terug te gaan");
         int keuze = scanner.nextInt();
+        
+        
         gebruiker.Delkapitaal(keuze); 
+        terugNaarHoofdmenu();
 
     }
 
@@ -304,25 +411,45 @@ public class Menu {
         System.out.println("Succesvol toegevoegd");
         
         gebruiker.addSpaarGeld(aantal);
+        terugNaarHoofdmenu();
     }
 
-    private static void setSpaargeld (Scanner scanner) {
-    System.out.println("Voer uw nieuw spaargeld bedrag: (0.00)");
-    double bedrag = scanner.nextDouble();
-    Spaargeld spaargeld = new Spaargeld(bedrag);
 
-    gebruiker.setSpaarGeld(spaargeld);
-    System.out.println("Succecvol bewerkt");
+
+
+    private static void setSpaargeld (Scanner scanner) {
+    System.out.println("Voer uw nieuw spaargeld bedrag: (0,00) of voer 0 in om terug te gaan");
+    double bedrag = scanner.nextDouble();
+    if (bedrag == 0) {
+        terugNaarHoofdmenu();
+    } else {
+        Spaargeld spaargeld = new Spaargeld(bedrag);
+
+        gebruiker.setSpaarGeld(spaargeld);
+        System.out.println("Succecvol bewerkt");
+        terugNaarHoofdmenu();
+
+    }
+    
         
     }
 
 
+    public double berekendividend(Double dividend) {
+         
+        double belasting = dividend * 0.15;
+        terugNaarHoofdmenu();
+        return belasting;
+        
 
-    
-    
+    }
 
+    private static void berekenrente(Scanner scanner) {
+        System.out.println("Hoeveel jaar gaat u het geld sparen");
+        int jaar = scanner.nextInt();
+        double rentebedrag = gebruiker.berekenrente(jaar);
+        System.out.printf("U gaat $ %.2f aan rente ontvangen %n", rentebedrag);
+        terugNaarHoofdmenu();
+    }
 
-
-
-    
 }
