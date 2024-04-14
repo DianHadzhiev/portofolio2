@@ -143,7 +143,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Druk op Enter om terug te gaan naar het hoofdmenu.");
         scanner.nextLine();
-        scanner.close();
+       
         
     }
 
@@ -441,6 +441,7 @@ public class Menu {
         double belasting = dividend * 0.15;
         
         return belasting;
+        
         
 
     }

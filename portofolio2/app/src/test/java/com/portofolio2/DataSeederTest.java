@@ -1,13 +1,13 @@
 package com.portofolio2;
 
-import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 
 
 import java.util.ArrayList;
-import java.io.*;
+
 
 public class DataSeederTest {
     private DataSeeder dataSeeder;
