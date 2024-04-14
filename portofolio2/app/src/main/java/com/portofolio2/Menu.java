@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class Menu {
 
     static Gebruiker gebruiker = new Gebruiker();
-    static Kapitaalvorm kapitaal;
-    static DataSeeder seeder = new DataSeeder();
+    
     private static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();

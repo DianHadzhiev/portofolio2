@@ -7,7 +7,7 @@ class Gebruiker {
     private ArrayList<Obligatie> obligaties;
     private ArrayList<Kapitaalvorm> kapitaal;
     private Spaargeld spaargeld = new Spaargeld();
-    private String naam;
+
 
     DataSeeder seeder = new DataSeeder();
 
@@ -48,13 +48,6 @@ class Gebruiker {
        
     }
 
-    public String getNaam() {
-        return naam;
-    }
-
-    public void setNaam(String naam) {
-        this.naam = naam;
-    }
 
     public Spaargeld getSpaarGeld() {
         this.spaargeld = seeder.readSpaargeldFromCSV();

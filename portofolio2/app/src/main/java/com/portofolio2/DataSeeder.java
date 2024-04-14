@@ -76,6 +76,25 @@ public class DataSeeder {
             System.out.println("Er is iets missgegaan ");
         }
     }
+    
+    public void writeObligatieToCSV(Obligatie obligatie) {
+        try {
+            String filePath = "obligatie.csv";
+            CSVWriter csvWriter = new CSVWriter((new FileWriter(filePath,true)));
+            String [] data ={ String.valueOf(obligatie.naam), String.valueOf(obligatie.waarde), String.valueOf(obligatie.aantal)};
+        
+            csvWriter.writeNext(data);
+            System.out.println();
+            System.out.println("Uw obligatie is opgelslagen");
+            csvWriter.close();
+            
+
+        } catch (IOException e) {
+            System.out.println("Er is iets missgegaan ");
+        }
+    }
+
+    
 
 
 
@@ -111,22 +130,6 @@ public class DataSeeder {
 
 
 
-    public void writeObligatieToCSV(Obligatie obligatie) {
-        try {
-            String filePath = "obligatie.csv";
-            CSVWriter csvWriter = new CSVWriter((new FileWriter(filePath,true)));
-            String [] data ={ String.valueOf(obligatie.naam), String.valueOf(obligatie.waarde), String.valueOf(obligatie.aantal)};
-        
-            csvWriter.writeNext(data);
-            System.out.println();
-            System.out.println("Uw obligatie is opgelslagen");
-            csvWriter.close();
-            
-
-        } catch (IOException e) {
-            System.out.println("Er is iets missgegaan ");
-        }
-    }
 
     public ArrayList<Obligatie> readObligatieFromCSV() {
         String filePath = "obligatie.csv";
